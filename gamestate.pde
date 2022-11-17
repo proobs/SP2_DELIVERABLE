@@ -1,6 +1,6 @@
 /*
 gamestate.pde
-Isaiah Turner
+Isaiah Turner, Mahad Osman
 Desc: game state file
 */
 
@@ -34,7 +34,7 @@ void gameManager(){
    }
    if(g_state == GameScreen.DORMS) {
       screen = loadImage("assests/img_dorms_bedroom.png");
-      image(screen,200.0,200.0);   
+      image(screen,0.0, -height/5.9);   
    }
   
    if(g_state == GameScreen.RESULTS) {
@@ -46,10 +46,11 @@ void gameManager(){
 // callFirstGame - tour of the uni campus on click of buttons
 void callFirstGameHUD() {
   printMSG("   PLACES TO CHECKOUT: "+ countPlaces, 0, int(height/1.06), height/19);
-  //print some level stuff for our char
-    printMSG("  AVERAGE JOE STATLINE:      FRESHMAN LEVEL: 50      SOCIAL: 50      GRADES: N/A      MENTAL: 50", 0, int(height/1.15), 15.0);
+  //print some level stuff for our character
+  printMSG("  AVERAGE JOE STATLINE:      FRESHMAN LEVEL: 50      SOCIAL: 50      GRADES: N/A      MENTAL: 50", 0, int(height/1.15), 15.0);
 }
 
+//mouseClickGS - gamestate mouse click function 
 void mouseClickGS() {
   // make everything but the bottom part of the screen clickable
     if (g_state == GameScreen.WORLD &&

@@ -33,7 +33,7 @@ void drawButton() {
     textFont(font); 
   }
   
-  String text1 = "next", text2 = "go";
+ 
   if(isTitle && !disableNext) { 
     text(text2, width / 1.7, height/1.06);
    } else if (!isTitle && !disableNext) {
@@ -45,7 +45,7 @@ void drawButton() {
     rect(sRectx, sRecty, fRectSOne, fRectSTwo);
      fill(255);
     textFont(font); 
-    text("back", width/ 4.9, height/1.06);
+    text(text3, width/ 4.9, height/1.06);
   }
 }
 
@@ -61,7 +61,9 @@ void buttonCheck() {
   if(!isTitle && overRect(int(sRectx), int(sRecty), int(fRectSOne), int(fRectSTwo)) && selection == 2 && !disableGUI) {
     isTitle = true;
     selection -=1;
-  } else if(!isTitle && overRect(int(sRectx), int(sRecty), int(fRectSOne), int(fRectSTwo)) && !disableGUI) {
+  } else if(!isTitle && overRect(int(sRectx), int(sRecty), int(fRectSOne), int(fRectSTwo)) && !disableGUI && text3 == "skip") {
+    selection +=2;
+  } else if (!isTitle && overRect(int(sRectx), int(sRecty), int(fRectSOne), int(fRectSTwo)) && !disableGUI) {
     selection -=1;
   }
 }
@@ -71,7 +73,7 @@ void screenType() {
     fill(255);
     textFont(font);
     text("UMBC TRAIL", width/5, height/2); 
-    text("By: TEAM 2", width/5, height/1.6); 
+    text("By: TEAM GOAT", width/8, height/1.6); 
   }
 }
 

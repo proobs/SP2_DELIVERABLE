@@ -1,3 +1,8 @@
+/*
+ *
+ *
+ */ 
+
 void setup(){
   size(1000, 1000);
   
@@ -19,13 +24,27 @@ void draw() {
  
  // screen select
  gameManager();
+ 
+ // font size for text
+ textSize = height / 14.28;
 }
 
 
 void mousePressed() { 
+  // check if button has been clicked
   buttonCheck(); 
+  
+  // check for week one mouse activation
   mouseClickGS(); 
 
+}
+
+//keyPress - check for key presses
+void keyPressed(){
+  // if mathGame is true, allow for numcheck to run
+  if(mathGame) {
+    numCheck();
+  }
 }
 
 // print message 
