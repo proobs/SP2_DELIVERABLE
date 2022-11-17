@@ -21,6 +21,7 @@ void drawCharacter() {
        // state line changes
        printMSG(" AS A RESULT, \n YOUR STATLINE HAS \n CHANGED. \n FRESHMAN: -25, \n SOCIAL +1 \n MENTAL: +25", int(height/100), height/5, height/14.28);
        break;
+     case
   }
   
 }
