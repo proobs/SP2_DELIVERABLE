@@ -1,7 +1,8 @@
-/*
- *
- *
- */ 
+// File: main.pde
+// Author: TEAM 2 / TEAM GOAT: Chiji, Mahad, Isaiah, Alexus, Camron
+// Date: 11/17/2022
+// Class: COMP 101
+// Description: Main file, hosts entire semester project
 
 void setup(){
   size(1000, 1000);

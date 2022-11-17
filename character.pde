@@ -1,3 +1,10 @@
+// File: main.pde
+// Author: TEAM 2 / TEAM GOAT: Chiji, Mahad, Isaiah, Alexus, Camron
+// Date: 11/17/2022
+// Class: COMP 101
+// Description: Character file, hosts all functions regarding them
+
+//drawCharacter - allows a switch to decide what the character does
 void drawCharacter() {
   switch (selection) {
     // on character selection screen 
