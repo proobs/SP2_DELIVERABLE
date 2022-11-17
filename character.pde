@@ -13,6 +13,14 @@ void drawCharacter() {
        disableGUI = true; 
        g_state = GameScreen.WORLD;
        break;
+     case 5: 
+       // first week finished
+       printMSG(" CONGRATS, \n THE AVERAGE JOE. \n\n IN YOUR FIRST WEEK \n YOU FIGURED OUT \n THE LAYOUT OF UMBC", int(height/100), height/5, height/14.28);
+       break;
+     case 6: 
+       // state line changes
+       printMSG(" AS A RESULT, \n YOUR STATLINE HAS \n CHANGED. \n FRESHMAN: -25, \n SOCIAL +1 \n MENTAL: +25", int(height/100), height/5, height/14.28);
+       break;
   }
   
 }

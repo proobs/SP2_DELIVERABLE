@@ -24,12 +24,8 @@ void draw() {
 
 void mousePressed() { 
   buttonCheck(); 
-  if (g_state == GameScreen.WORLD) {
-      g_state = GameScreen.EMPTY; 
-      disableGUI = false;
-      selection +=1; 
-      
-  }
+  mouseClickGS(); 
+
 }
 
 // print message 

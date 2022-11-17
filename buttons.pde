@@ -13,10 +13,10 @@ void guiSetup() {
 }
 void guiManager() {
   if(!disableGUI) {
-    drawLine();
     drawButton();
     screenType(); 
   }
+  drawLine();
 }
 
 void drawLine() {
@@ -26,15 +26,17 @@ void drawLine() {
 }
 
 void drawButton() {
-  fill(50);
-  rect( fRectx, fRecty , fRectSOne, fRectSTwo); 
-  fill(255);
-  textFont(font); 
+  if(!disableNext) {
+    fill(50);
+    rect( fRectx, fRecty , fRectSOne, fRectSTwo); 
+    fill(255);
+    textFont(font); 
+  }
   
   String text1 = "next", text2 = "go";
-  if(isTitle) { 
+  if(isTitle && !disableNext) { 
     text(text2, width / 1.7, height/1.06);
-   } else {
+   } else if (!isTitle && !disableNext) {
     text(text1, width / 1.7, height/1.06);
    }
   // if isn't title spawn left button 
@@ -49,17 +51,17 @@ void drawButton() {
 
 void buttonCheck() {
     // check if the first box is working
-  if(overRect(int(fRectx), int(fRecty), int(fRectSOne), int(fRectSTwo)) && selection == 1) {
+  if(overRect(int(fRectx), int(fRecty), int(fRectSOne), int(fRectSTwo)) && selection == 1 && !disableGUI) {
      isTitle = false;
      selection = 2;
-  } else if(overRect(int(fRectx), int(fRecty), int(fRectSOne), int(fRectSTwo)))  {
+  } else if(overRect(int(fRectx), int(fRecty), int(fRectSOne), int(fRectSTwo)) && !disableGUI)  {
     selection +=1; 
   }
   
-  if(!isTitle && overRect(int(sRectx), int(sRecty), int(fRectSOne), int(fRectSTwo)) && selection == 2) {
+  if(!isTitle && overRect(int(sRectx), int(sRecty), int(fRectSOne), int(fRectSTwo)) && selection == 2 && !disableGUI) {
     isTitle = true;
     selection -=1;
-  } else if(!isTitle && overRect(int(sRectx), int(sRecty), int(fRectSOne), int(fRectSTwo))) {
+  } else if(!isTitle && overRect(int(sRectx), int(sRecty), int(fRectSOne), int(fRectSTwo)) && !disableGUI) {
     selection -=1;
   }
 }
