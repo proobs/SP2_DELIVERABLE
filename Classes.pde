@@ -8,8 +8,23 @@
  * GameScreen - controls the game state
  */
 enum GameScreen {
-  TITLE, SELECT_SCHEDULE, SELECT_MAJOR, WORLD, DORMS, LIBRARY, COMMONS, RAC, RESULTS;
+  TITLE, SELECT_SCHEDULE, SELECT_MAJOR, SELECT_PLAYER, WORLD, DORMS, LIBRARY, COMMONS, RAC, RESULTS, VOID;
 }
+
+/*
+ * Major - major type
+ */ 
+enum Major {
+  STEM, ARTS; 
+}
+
+/* 
+ * PlayerType - Player type
+ */
+enum PlayerType {
+  STUDENT_ATHLETE, ART, AVERAGE_JOE, ACADEMIC_WEAPON; 
+}
+
 
 /*
  * Button - Class that manages all buttons in the game and 
@@ -36,8 +51,8 @@ class Button {
   int colr3;
   
   //check if clicked
-  boolean pressed;
-  boolean clicked;
+  boolean pressed = false;
+  boolean clicked = false;;
 
   /* Button() - initilization of button class and variables.
    * @param x - x value
@@ -94,7 +109,7 @@ class Button {
    * update - checks if mouse is click box
    */
   void update() {
-    if (mousePressed == true && pressed == false) { // if we clicked
+    if (mousePressed && !pressed) { // if we clicked
       pressed = true;
       //and if mouse is in the button bounds
       if (mouseX >= Pos.x && mouseX <= Pos.x+iWidth && mouseY >= Pos.y && mouseY <= Pos.y + iHeight) {
@@ -123,6 +138,7 @@ class TimeSystem {
   int hours = 0;
   int days = 0;
   int weeks = 0;
+  int classDays[];
   
   //internal bools
   boolean thresh1;
@@ -156,10 +172,16 @@ class TimeSystem {
     }
 
 
-    if (days >=7 && !thresh3) {
+    if (days >=5 && !thresh3) {
       weeks += 1;
       thresh3 = true;
     }
+    
+    // check if end of game
+    if (weeks == 16) {
+      endOfGamePrompt();  
+    }
+    
   }
   /* 
    * currentTime - returns current time
@@ -175,9 +197,16 @@ class TimeSystem {
 }
 
 class Player {
+  float grades; 
+  float awareness; 
+  float mental;
+  PlayerType playerType;
   
-  Player() {
-    
+  Player(float g, float a, float m, PlayerType pt) {
+    grades = g; 
+    awareness = a;
+    mental = m; 
+    playerType = pt;
   }
   
 }

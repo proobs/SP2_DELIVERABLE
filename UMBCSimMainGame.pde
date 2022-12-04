@@ -6,6 +6,7 @@
 
 
 GameScreen g_state = GameScreen.TITLE; //holds the game state
+Major g_major; //major
 
 boolean gameHasStarted = false; //check if game start
 
@@ -48,6 +49,8 @@ Button option2;
 Button major_option1;
 Button major_option2;
 
+int daySchedule;
+
 
 
 void setup() {   
@@ -59,6 +62,9 @@ void setup() {
   
   //setup timesys
   timeSys = new TimeSystem(); 
+  
+  //
+  loadImages(); 
   
   //setup buttons
   b_start = new Button (500, 800, 120, 80, "Start", 30, 255, 255, 255, 570,830, 0);
@@ -87,79 +93,6 @@ void draw() {
   b_start.update();
 }
 
-
-void screenManager() {
-
-
-  if (b_start.isClicked()) {
-    g_state = GameScreen.SELECT_SCHEDULE;
-    //gameHasStarted = true;
-    b_start.setXPosition(-1000);
-  }
-
-
-  //if the mouse is over the start button and button is pressed, game state is WORLD
-  // if game state is WORLD, the image in the center of the screen becomes the campus map
-  // etc.....
-  if (g_state == GameScreen.TITLE) {
-    screen = loadImage("assests/img_titleScreen.png");
-    image(screen, 0.0, 10.0);
-
-  }
-
-  if (g_state == GameScreen.SELECT_SCHEDULE) {
-    screen = loadImage("assests/img_ScheduleSelect.png");
-    image(screen, 0.0, 10.0);
-    setupSchedule();
-  }
-
-  if (g_state == GameScreen.SELECT_MAJOR) {
-    screen = loadImage("assests/img_ScheduleSelect.png");
-    image(screen, 0.0, 10.0);
-    selectMajor();
-  }
-
-
-
-  if (g_state == GameScreen.WORLD) {
-    screen = loadImage("assests/img_WorldMap.png");
-    image(screen, 0.0, 10.0);
-    currentLocation = "MAP";
-  }
-  if (g_state == GameScreen.COMMONS) {
-    screen = loadImage("assests/img_Commons.png");
-    image(screen, 0.0, -300.0);
-    currentLocation = "COMMONS";
-  }
-  if (g_state == GameScreen.LIBRARY) {
-    screen = loadImage("assests/img_library.png");
-    image(screen, 0.0, 10.0);
-    currentLocation = "LIBRARY";
-  }
-
-  if (g_state == GameScreen.RAC) {
-    screen = loadImage("assests/img_RAC.png");
-    image(screen, 0.0, 10.0);
-    currentLocation = "RAC";
-  }
-
-
-  if (g_state == GameScreen.DORMS) {
-    screen = loadImage("assests/img_dorms_bedroom.png");
-    image(screen, 200.0, 200.0);
-  }
-
-  if (g_state == GameScreen.RESULTS) {
-    screen = loadImage("assests/img_Results.png");
-    image(screen, 0.0, 10.0);
-  }
-}
-
-void playerManager() {
-}
-
-
-
 //setupSchedule() - this function assigns a specific schedule to the character
 void setupSchedule() {
 
@@ -184,6 +117,7 @@ void setupSchedule() {
   //rectangle ticks at different y positions
   for (int i = 0; i<option1Schedule.length; i++) {
       chosenSchedule[i] = option1Schedule[i];
+      
     }
   }
 
@@ -197,28 +131,43 @@ void setupSchedule() {
   if (option1.isClicked() || option2.isClicked()) {
 
     g_state = GameScreen.SELECT_MAJOR;
-    option1.setXPosition(-1000);
-    option2.setXPosition(-1000);
+    //option1.setXPosition(-1000);
+    //option2.setXPosition(-1000);
    
   }
 }
 
 
 void selectMajor(){
-
-  //do this inside of the zip:
   
- //create 2 buttons: STEM and Humanities
+  fill(255);
+  text("PICK A MAJOR!", 500, 150);
 
-//if player chooses the STEM button, major = "STEM"
-//if player chooses the Humanities button, major = "Humanities"
+  option1 = new Button (200, 200, 300, 200, " STEM: \n Your class will be \n difficult, \n but rewarding.", 20, 0, 0, 0, 350,300,255);
+  option2 = new Button (600, 200, 300, 200, " Fine Arts: \n You will get to \n be very creative!", 20, 0, 0, 0, 750,300,255);
+  option1.clicked = false;
+  option2.clicked = false;
+  option1.Render();
+  option1.update();
+  option2.Render();
+  option2.update();
 
+  
+  if (option1.isClicked()) { 
+    g_major = Major.STEM;
+  }
 
-//before doing this, you need to create 2 button objects locally,
-//and then a global String called seledtedMajor which will be set to " ".
-//then go to drawHUD(), call text ()  and have it print selectedMajor to the screen
+  if (option2.isClicked()) {
+    g_major = Major.ARTS;  
+  }
 
-//
+  if (option1.isClicked() || option2.isClicked()) {
+
+    g_state = GameScreen.SELECT_PLAYER;
+    //option1.setXPosition(-1000);
+    //option2.setXPosition(-1000);
+   
+  }
 
 }
 
@@ -231,11 +180,6 @@ void drawSchedule(){
 
 }
 
-
-
-
-
-
 void Planner() {
   //draw the planner page on the HUD
   fill(255);
@@ -247,4 +191,11 @@ void Planner() {
     fill(0);
     rect(880, tickY[i], 25, 15);
   }
+}
+
+/* 
+ * endOfGamePromt() - called after 15 weeks
+ */ 
+void endOfGamePrompt() {
+  gameHasStarted =  false; 
 }
